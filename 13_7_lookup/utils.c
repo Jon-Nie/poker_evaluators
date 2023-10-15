@@ -1,6 +1,32 @@
-unsigned long long bincoeff(int n, int k)
+#include <stdlib.h>
+
+int** permutations_array(int elements[], int no_elements);
+unsigned long long bincoeff(unsigned int n, unsigned int k);
+unsigned long long permutations(unsigned int no_elements);
+static void swap_elements(int* element1, int* element2);
+static void fill_permutations(int elements[], int no_elements, int start, int end, int** array_pointer, int* column_index);
+
+int** permutations_array(int elements[], int no_elements)
 {
-    if (k > n) return -1;
+    int** array_ptr;
+    int column_index = 0;
+
+    int rows = permutations(no_elements);
+    int** permutation_array = malloc(sizeof(int[rows][no_elements]));
+
+    for (int i = 0; i < rows; i++) {
+        permutation_array[i] = malloc(no_elements * sizeof(int));
+    }
+
+    array_ptr = permutation_array;
+    fill_permutations(elements, no_elements, 0, no_elements-1, array_ptr, &column_index);
+
+    return array_ptr;
+}
+
+unsigned long long bincoeff(unsigned int n, unsigned int k)
+{
+    if (k > n) return 0;
 
     unsigned long long combis = 1;
     int stop;
@@ -11,7 +37,6 @@ unsigned long long bincoeff(int n, int k)
     } else {
         stop = n - k;
     }
-
 
     // numerator
     while (n > stop) {
@@ -24,4 +49,39 @@ unsigned long long bincoeff(int n, int k)
     }
 
     return combis;
+}
+
+unsigned long long permutations(unsigned int elements)
+{
+    int perms = 1;
+
+    while (elements > 1) {
+        perms *= elements--;
+    }
+
+    return perms;
+}
+
+static void swap_elements(int* n, int* m)
+{
+    int temp = *n;
+    *n = *m;
+    *m = temp;
+}
+
+static void fill_permutations(int elements[], int no_elements, int start, int end, int** array_pointer, int* column_pointer)
+{
+    if (start == end) {
+        for (int i = 0; i < no_elements; i++) {
+            *(array_pointer[*column_pointer]+i) = elements[i];
+        }
+        *column_pointer += 1;
+        return;
+    }
+
+    for (int i = start; i <= end; i++) {
+        swap_elements(elements+i, elements+start);
+        fill_permutations(elements, no_elements, start+1, end, array_pointer, column_pointer);
+        swap_elements(elements+i, elements+start);
+    }
 }
