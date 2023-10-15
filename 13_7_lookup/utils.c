@@ -4,7 +4,7 @@ int** permutations_array(int elements[], int no_elements);
 unsigned long long bincoeff(unsigned int n, unsigned int k);
 unsigned long long permutations(unsigned int no_elements);
 static void swap_elements(int* element1, int* element2);
-static void fill_permutations(int elements[], int no_elements, int start, int end, int** array_pointer, int* col_idx_ptr);
+static void fill_permutations(int elements[], int no_elements, int** array_pointer, int* col_idx_ptr, int start, int end);
 
 int** permutations_array(int elements[], int no_elements)
 {
@@ -19,7 +19,7 @@ int** permutations_array(int elements[], int no_elements)
     }
 
     array_ptr = permutation_array;
-    fill_permutations(elements, no_elements, 0, no_elements-1, array_ptr, &column_index);
+    fill_permutations(elements, no_elements, array_ptr, &column_index, 0, no_elements-1);
 
     return array_ptr;
 }
@@ -69,7 +69,7 @@ static void swap_elements(int* n, int* m)
     *m = temp;
 }
 
-static void fill_permutations(int elements[], int no_elements, int start, int end, int** array_pointer, int* col_idx_ptr)
+static void fill_permutations(int elements[], int no_elements, int** array_pointer, int* col_idx_ptr, int start, int end)
 {
     if (start == end) {
         for (int i = 0; i < no_elements; i++) {
@@ -81,7 +81,7 @@ static void fill_permutations(int elements[], int no_elements, int start, int en
 
     for (int i = start; i <= end; i++) {
         swap_elements(elements+i, elements+start);
-        fill_permutations(elements, no_elements, start+1, end, array_pointer, col_idx_ptr);
+        fill_permutations(elements, no_elements, array_pointer, col_idx_ptr, start+1, end);
         swap_elements(elements+i, elements+start);
     }
 }
