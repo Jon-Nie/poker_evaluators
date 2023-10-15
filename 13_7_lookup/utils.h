@@ -1,6 +1,6 @@
 /*
-permutations_array returns a two-dimensional array, with each sub-array/row representing one permutation.
-Example: permutations_array({5, 6, 7}, 3) returns the following array:
+permutations_array returns a pointer to a two-dimensional array, with each sub-array/row representing one permutation.
+Example: permutations_array({5, 6, 7}, 3) returns a pointer to the following array:
 {
     {5, 6, 7},
     {5, 7, 6},
