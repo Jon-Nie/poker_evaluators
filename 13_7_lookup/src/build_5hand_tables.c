@@ -1,7 +1,7 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
-#include "../utils.h"
+#include "../include/utils.h"
 
 enum VALUES {
     TWO = 0,
@@ -36,7 +36,7 @@ int main()
         return 1;
     }
 
-    file = fopen("flushes5.data", "wb");
+    file = fopen("tables/flushes5.data", "wb");
     success = fwrite(flushes, sizeof(int), 371293, file);
     fclose(file);
 
@@ -45,7 +45,7 @@ int main()
         return 2;
     }
 
-    file = fopen("nonflushes5.data", "wb");
+    file = fopen("tables/nonflushes5.data", "wb");
     success = fwrite(nonflushes, sizeof(int), 371293, file);
     fclose(file);
 
