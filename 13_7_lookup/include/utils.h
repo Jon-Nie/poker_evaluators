@@ -23,3 +23,15 @@ permutations returns the factorial of a positive integer, which is the number of
 Example: There are 720 possibilities to draw 6 elements without replacement and with considering the order of drawing.
 */
 unsigned long long permutations(unsigned int no_elements);
+
+/*
+perm_7_5 is an array of bincoeff(7, 5) = 21 arrays of possible index combinations of
+drawing 5 indices of a 7-size array without replacement and without considering the order:
+{
+    {0, 1, 2, 3, 4},
+    {0, 1, 2, 3, 5},
+    ...
+    {2, 3, 4, 5, 6}
+}
+*/
+int perm_7_5[21][5];

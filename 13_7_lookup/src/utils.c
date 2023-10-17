@@ -6,6 +6,32 @@ unsigned long long permutations(unsigned int no_elements);
 static void swap_elements(int* element1, int* element2);
 static void fill_permutations(int elements[], int no_elements, int** array_pointer, int* row_idx_ptr, int start, int end);
 
+int perm_7_5[21][5] =
+{
+    {0, 1, 2, 3, 4},
+    {0, 1, 2, 3, 5},
+    {0, 1, 2, 3, 6},
+    {0, 1, 2, 4, 5},
+    {0, 1, 2, 4, 6},
+    {0, 1, 2, 5, 6},
+    {0, 1, 3, 4, 5},
+    {0, 1, 3, 4, 6},
+    {0, 1, 3, 5, 6},
+    {0, 1, 4, 5, 6},
+    {0, 2, 3, 4, 5},
+    {0, 2, 3, 4, 6},
+    {0, 2, 3, 5, 6},
+    {0, 2, 4, 5, 6},
+    {0, 3, 4, 5, 6},
+    {1, 2, 3, 4, 5},
+    {1, 2, 3, 4, 6},
+    {1, 2, 3, 5, 6},
+    {1, 2, 4, 5, 6},
+    {1, 3, 4, 5, 6},
+    {2, 3, 4, 5, 6}
+};
+
+
 int** permutations_array(int elements[], int no_elements)
 {
     int** array_ptr;
