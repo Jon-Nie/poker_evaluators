@@ -6,6 +6,21 @@ char values_char[] = {'2', '3', '4', '5', '6', '7', '8', '9', 'T', 'J', 'Q', 'K'
 char suits[] = {CLUBS, DIAMONDS, HEARTS, SPADES};
 char suits_char[] = {'c', 'd', 'h', 's'};
 
+int get_5hand_rank(Card cards[], int flush_lookup[], int nonflush_lookup[])
+{
+    unsigned int c1 = cards[0].value;
+    unsigned int c2 = cards[1].value;
+    unsigned int c3 = cards[2].value;
+    unsigned int c4 = cards[3].value;
+    unsigned int c5 = cards[4].value;
+
+    if(check_flush(cards, 5)) {
+        return flush_lookup[c1 + (c2*13) + (c3*13*13) + (c4*13*13*13) + (c5*13*13*13*13)];
+    } else {
+        return nonflush_lookup[c1 + (c2*13) + (c3*13*13) + (c4*13*13*13) + (c5*13*13*13*13)];
+    }
+}
+
 char check_flush(Card cards[], int no_elements)
 {
     char suit;
