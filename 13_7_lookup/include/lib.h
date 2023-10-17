@@ -50,7 +50,7 @@ The parameters have to be the card array of type Card and the number of elements
 void print_cards(Card cards[], int no_elements);
 
 /*
-init_deck takes an array of type Card and size 52 as the argument
-and fills that array with all 52 possible Texas-Holdem Cards.
+init_deck takes initiates an array of type Card and size 52, fills that array
+with all 52 possible Texas-Holdem Cards and returns a pointer to that array.
 */
-void init_deck(Card deck[]);
+Card* init_deck();

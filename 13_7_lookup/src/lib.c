@@ -1,4 +1,5 @@
 #include <stdio.h>
+#include <stdlib.h>
 #include "../include/lib.h"
 
 char values[] = {TWO, THREE, FOUR, FIVE, SIX, SEVEN, EIGHT, NINE, TEN, JACK, QUEEN, KING, ACE};
@@ -43,14 +44,17 @@ void print_cards(Card cards[], int no_elements)
     printf("\n");
 }
 
-void init_deck(Card deck[])
+Card* init_deck()
 {
     int index = 0;
+    Card* deck = malloc(sizeof(Card) * 52);
 
     for (int value = 0; value <= ACE; value++) {
         for (int suit = 0; suit <= SPADES; suit++) {
             Card card = {.value = value, .suit = suit};
-            *deck[index++] = card;
+            deck[index++] = card;
         }
     }
+
+    return deck;
 }
