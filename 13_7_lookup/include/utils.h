@@ -2,8 +2,9 @@
     #define SYMBOLIC_DEFINITIONS
 
     #define ARRSIZE_13_5 371293
+    #define ARRSIZE_13_6 4726809
     #define ARRSIZE_13_7 62748517
-endif
+#endif
 
 int perm_7_5[21][5];
 
