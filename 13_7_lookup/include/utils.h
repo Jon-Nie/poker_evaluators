@@ -1,3 +1,10 @@
+#ifndef SYMBOLIC_DEFINITIONS
+    #define SYMBOLIC_DEFINITIONS
+
+    #define ARRSIZE_13_5 371293
+    #define ARRSIZE_13_7 62748517
+endif
+
 /*
 permutations_array returns a pointer to a two-dimensional array, with each sub-array/row representing one permutation without considering the order.
 Example: permutations_array({5, 6, 7}, 3) returns a pointer to the following array:
