@@ -3,8 +3,8 @@
 #include <string.h>
 #include "../include/utils.h"
 
-static int build_5hand_lookup_tables();
-static void insert_5hand_rank(int ranks[], int cards[], int rank);
+int build_5hand_lookup_tables();
+void insert_5hand_rank(int ranks[], int cards[], int rank);
 
 enum VALUES {
     TWO = 0,
@@ -57,7 +57,7 @@ int main()
     return 0;
 }
 
-static int build_5hand_lookup_tables()
+int build_5hand_lookup_tables()
 {
     int temp = 0;
     int rank = 0;
@@ -244,7 +244,7 @@ static int build_5hand_lookup_tables()
     return rank;
 }
 
-static void insert_5hand_rank(int ranks[], int cards[], int rank)
+void insert_5hand_rank(int ranks[], int cards[], int rank)
 {
     int c1;
     int c2;
