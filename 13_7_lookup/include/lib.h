@@ -29,3 +29,9 @@
         SPADES
     };
 #endif
+
+/*
+print_cards prints the string representation of each card in an array.
+The parameters have to be the card array of type Card and the number of elements.
+*/
+void print_cards(Card cards[], int no_elements);
