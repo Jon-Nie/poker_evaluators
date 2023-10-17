@@ -3,6 +3,9 @@
 #include <string.h>
 #include "../include/utils.h"
 
+static int build_5hand_lookup_tables();
+static void insert_5hand_rank(int ranks[], int cards[], int rank);
+
 enum VALUES {
     TWO = 0,
     THREE,
@@ -22,15 +25,12 @@ enum VALUES {
 int flushes[13*13*13*13*13];
 int nonflushes[13*13*13*13*13];
 
-int build_5_hand_lookup_tables();
-void insert_rank(int ranks[], int cards[], int rank);
-
 int main()
 {
     int success = 0;
     FILE* file;
 
-    int ranks = build_5_hand_lookup_tables();
+    int ranks = build_5hand_lookup_tables();
     if (ranks != 7462) {
         printf("Error: Couldn't build lookup table.");
         return 1;
@@ -57,7 +57,7 @@ int main()
     return 0;
 }
 
-int build_5_hand_lookup_tables()
+static int build_5hand_lookup_tables()
 {
     int temp = 0;
     int rank = 0;
@@ -72,13 +72,13 @@ int build_5_hand_lookup_tables()
             cards[n] = i-n;
         }
         rank++;
-        insert_rank(flushes, cards, rank);
+        insert_5hand_rank(flushes, cards, rank);
     }
 
     // A2345 Straight Flush
     memcpy(cards, wheel, sizeof(cards));
     rank++;
-    insert_rank(flushes, cards, rank);
+    insert_5hand_rank(flushes, cards, rank);
     printf("Straight Flushes:\t%d\n", rank-temp);
     temp = rank;
 
@@ -91,7 +91,7 @@ int build_5_hand_lookup_tables()
             if (i == j) continue;
             cards[4] = j;
             rank++;
-            insert_rank(nonflushes, cards, rank);
+            insert_5hand_rank(nonflushes, cards, rank);
         }
     }
     printf("Four of a Kinds:\t%d\n", rank-temp);
@@ -108,7 +108,7 @@ int build_5_hand_lookup_tables()
                 cards[n] = j;
             }
             rank++;
-            insert_rank(nonflushes, cards, rank);
+            insert_5hand_rank(nonflushes, cards, rank);
         }
     }
     printf("Full Houses:\t\t%d\n", rank-temp);
@@ -130,7 +130,7 @@ int build_5_hand_lookup_tables()
                         if (a == ACE && b == FIVE && c == FOUR && d == THREE && e == TWO) continue;
                         cards[4] = e;
                         rank++;
-                        insert_rank(flushes, cards, rank);
+                        insert_5hand_rank(flushes, cards, rank);
                     }
                 }
             }
@@ -145,13 +145,13 @@ int build_5_hand_lookup_tables()
             cards[n] = i-n;
         }
         rank++;
-        insert_rank(nonflushes, cards, rank);
+        insert_5hand_rank(nonflushes, cards, rank);
     }
 
     // A2345 Straight
     memcpy(cards, wheel, sizeof(cards));
     rank++;
-    insert_rank(nonflushes, cards, rank);
+    insert_5hand_rank(nonflushes, cards, rank);
     printf("Straights:\t\t%d\n", rank-temp);
     temp = rank;
 
@@ -167,7 +167,7 @@ int build_5_hand_lookup_tables()
                 if (i == k || j == k) continue;
                 cards[4] = k;
                 rank++;
-                insert_rank(nonflushes, cards, rank);
+                insert_5hand_rank(nonflushes, cards, rank);
             }
         }
     }
@@ -187,7 +187,7 @@ int build_5_hand_lookup_tables()
                 if (k == i || k == j) continue;
                 cards[4] = k;
                 rank++;
-                insert_rank(nonflushes, cards, rank);
+                insert_5hand_rank(nonflushes, cards, rank);
             }
         }
     }
@@ -208,7 +208,7 @@ int build_5_hand_lookup_tables()
                     if (d == a || d == b || d == c) continue;
                     cards[4] = d;
                     rank++;
-                    insert_rank(nonflushes, cards, rank);
+                    insert_5hand_rank(nonflushes, cards, rank);
                 }
             }
         }
@@ -232,7 +232,7 @@ int build_5_hand_lookup_tables()
                         if (a == ACE && b == FIVE && c == FOUR && d == THREE && e == TWO) continue;
                         cards[4] = e;
                         rank++;
-                        insert_rank(nonflushes, cards, rank);
+                        insert_5hand_rank(nonflushes, cards, rank);
                     }
                 }
             }
@@ -244,7 +244,7 @@ int build_5_hand_lookup_tables()
     return rank;
 }
 
-void insert_rank(int ranks[], int cards[], int rank)
+static void insert_5hand_rank(int ranks[], int cards[], int rank)
 {
     int c1;
     int c2;
