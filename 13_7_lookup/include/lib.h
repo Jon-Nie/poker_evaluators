@@ -31,6 +31,12 @@
 #endif
 
 /*
+get_5hand_rank takes a type Card array of length 5 and the two flush and nonflush lookup arrays as arguments,
+checks if the hand represents a flush and returns the hand rank of the hand-representing array.
+*/
+int get_5hand_rank(Card cards[], int flush_lookup[], int nonflush_lookup[]);
+
+/*
 check_flush takes an array of type Card and the number of elements in that array as arguments
 and returns the integer representation of the suit (0: clubs, 1: diamonds, 2: hearts, 3: spades)
 if the hand is a flush and -1 else.
