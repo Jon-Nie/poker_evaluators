@@ -13,3 +13,15 @@ void print_cards(Card cards[], int no_elements)
     }
     printf("\n");
 }
+
+void init_deck(Card deck[])
+{
+    int index = 0;
+
+    for (int value = 0; value <= ACE; value++) {
+        for (int suit = 0; suit <= SPADES; suit++) {
+            Card card = {.value = value, .suit = suit};
+            *deck[index++] = card;
+        }
+    }
+}

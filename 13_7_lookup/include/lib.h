@@ -32,6 +32,12 @@
 
 /*
 print_cards prints the string representation of each card in an array.
-The parameters have to be the card array of type Card and the number of elements.
+The parameters have to be the card array of type Card and the number of elements in that array.
 */
 void print_cards(Card cards[], int no_elements);
+
+/*
+init_deck takes an array of type Card and size 52 as the argument
+and fills that array with all 52 possible Texas-Holdem Cards.
+*/
+void init_deck(Card deck[]);
