@@ -1,7 +1,7 @@
 #include <stdio.h>
 #include <stdlib.h>
 
-char* deck_char[52] = {
+char *deck_char[52] = {
     "Ac", "Ad", "Ah", "As",
     "Kc", "Kd", "Kh", "Ks",
     "Qc", "Qd", "Qh", "Qs",
@@ -17,14 +17,12 @@ char* deck_char[52] = {
     "2c", "2d", "2h", "2s"
 };
 
-unsigned long long* init_deck()
+unsigned long long *init_deck()
 {
-    unsigned long long* deck = malloc(sizeof(unsigned long long) * 52);
-    unsigned long long card = 1;
+    unsigned long long *deck = malloc(sizeof(unsigned long long) * 52);
 
     for (int i = 0; i < 52; i++) {
-        deck[i] = card;
-        card = card << 1;
+        deck[i] = (1 << i);
     }
 
     return deck;
