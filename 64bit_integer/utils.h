@@ -1,0 +1,1 @@
+unsigned short *build_active_bits_table();
