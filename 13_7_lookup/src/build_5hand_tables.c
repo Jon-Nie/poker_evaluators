@@ -37,18 +37,16 @@ int main()
     }
 
     file = fopen("tables/flushes5.data", "wb");
-    success = fwrite(flushes, sizeof(int), 371293, file);
+    success = fwrite(flushes, sizeof(int), ARRSIZE_13_5, file);
     fclose(file);
-
     if (success == 0) {
         printf("Error: couldn't write to flushes file.");
         return 2;
     }
 
     file = fopen("tables/nonflushes5.data", "wb");
-    success = fwrite(nonflushes, sizeof(int), 371293, file);
+    success = fwrite(nonflushes, sizeof(int), ARRSIZE_13_5, file);
     fclose(file);
-
     if (success == 0) {
         printf("Error: couldn't write to nonflushes file.");
         return 3;
