@@ -1,7 +1,10 @@
 #include <stdio.h>
 #include <stdlib.h>
+#include <stdint.h>
 
-char *deck_char[52] = {
+#define DECK_SIZE 52
+
+char *deck_char[DECK_SIZE] = {
     "Ac", "Ad", "Ah", "As",
     "Kc", "Kd", "Kh", "Ks",
     "Qc", "Qd", "Qh", "Qs",
@@ -17,20 +20,20 @@ char *deck_char[52] = {
     "2c", "2d", "2h", "2s"
 };
 
-unsigned long long *init_deck()
+uint64_t *init_deck()
 {
-    unsigned long long *deck = malloc(sizeof(unsigned long long) * 52);
+    uint64_t *deck = malloc(sizeof(uint64_t) * DECK_SIZE);
 
-    for (int i = 0; i < 52; i++) {
-        deck[i] = (1 << i);
+    for (int i = 0; i < DECK_SIZE; i++) {
+        deck[i] = ((uint64_t)1 << i);
     }
 
     return deck;
 }
 
-void print_cards(unsigned long long cards)
+void print_cards(uint64_t cards)
 {
-    for (int i = 0; i < 52; i++) {
+    for (int i = 0; i < DECK_SIZE; i++) {
         if (cards & 1) {
             printf("%s ", deck_char[i]);
         }
