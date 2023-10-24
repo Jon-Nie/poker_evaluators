@@ -21,3 +21,11 @@ uint8_t *build_active_bits_table()
 
     return active_bits;
 }
+
+uint64_t bincoeff(uint16_t n, uint16_t k)
+{
+    if (k > n) return 0;
+    if (k == 0 || k == n) return 1;
+
+    return bincoeff(n-1, k-1) + bincoeff(n-1, k);
+}
