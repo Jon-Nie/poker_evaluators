@@ -66,7 +66,7 @@ static uint64_t compute_subindex(uint16_t number, uint8_t bits_set, uint8_t addi
     return index;
 }
 
-uint64_t **build_index_tables()
+uint64_t **build_subindex_tables()
 {
     uint64_t *lookup16 = malloc(sizeof(uint64_t) * ARRSIZE_16);
     uint64_t *lookup32 = malloc(sizeof(uint64_t) * ARRSIZE_16 * MAX_BITS);
