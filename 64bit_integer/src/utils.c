@@ -79,7 +79,7 @@ uint64_t **build_subindex_tables()
     lookup_tables[2] = lookup48;
     lookup_tables[3] = lookup64;
 
-    uint16_t *active_bits = build_active_bits_table();
+    uint8_t *active_bits = build_active_bits_table();
     uint8_t bits_set, bits_left;
     uint64_t index16, index32, index48, index64;
 
