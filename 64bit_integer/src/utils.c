@@ -109,3 +109,30 @@ uint64_t **build_subindex_tables()
 
     return lookup_tables;
 }
+
+uint32_t get_index(uint16_t *no_ptr, uint64_t **index_tables, uint8_t *bit_lookup)
+{
+    uint64_t *lookup16 = index_tables[0];
+    uint64_t *lookup32 = index_tables[1];
+    uint64_t *lookup48 = index_tables[2];
+    uint64_t *lookup64 = index_tables[3];
+
+    uint64_t no1 = *no_ptr++;
+    uint64_t no2 = *no_ptr++;
+    uint64_t no3 = *no_ptr++;
+    uint64_t no4 = *no_ptr;
+
+    uint8_t bits1 = bit_lookup[no1];
+    uint8_t bits2 = bit_lookup[no2];
+    uint8_t bits3 = bit_lookup[no3];
+    uint8_t bits4 = bit_lookup[no4];
+
+    uint64_t index1 = no1;
+    uint64_t index2 = (bits1)*ARRSIZE_16 + no2;
+    uint64_t index3 = (bits1+bits2)*ARRSIZE_16 + no3;
+    uint64_t index4 = (bits1+bits2+bits3)*ARRSIZE_16 + no4;
+
+    uint32_t index = lookup16[index1] + lookup32[index2] + lookup48[index3] + lookup64[index4] - 3;
+
+    return index;
+}
