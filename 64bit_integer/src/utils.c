@@ -25,9 +25,10 @@ uint8_t *build_active_bits_table()
     return active_bits;
 }
 
-uint64_t bincoeff(uint16_t n, uint16_t k)
+uint64_t bincoeff(int16_t n, int16_t k)
 {
     if (k > n) return 0;
+    if ((n < 0) || (k < 0)) return 0;
 
     uint64_t combis = 1;
     int stop;
