@@ -4,6 +4,14 @@
 
 int main()
 {
+    uint8_t *active_bits = build_active_bits_table();
+    uint64_t **index_tables = build_subindex_tables();
+
+    uint64_t number;
+    uint16_t *no_ptr = (uint16_t*)(&number);
+    uint32_t index = 0;
+    uint32_t computed_index;
+
     // popular combinations
     assert(bincoeff(49, 6) == 13983816);
     assert(bincoeff(52, 7) == 133784560);
@@ -22,35 +30,19 @@ int main()
 
     assert(bincoeff(14, 5) == bincoeff(14, 9));
 
-    uint8_t *active_bits = build_active_bits_table();
-    uint64_t **index_tables = build_subindex_tables();
-
     // testing active bits
-    assert(active_bits[1] == 1);
-    assert(active_bits[2] == 1);
-    assert(active_bits[4] == 1);
-    assert(active_bits[8] == 1);
-    assert(active_bits[16] == 1);
-    assert(active_bits[32] == 1);
-    assert(active_bits[64] == 1);
-    assert(active_bits[128] == 1);
-
-    assert(active_bits[36] == 2);
-    assert(active_bits[81] == 3);
-    assert(active_bits[15] == 4);
-    assert(active_bits[173] == 5);
-    assert(active_bits[231] == 6);
-    assert(active_bits[253] == 7);
-    assert(active_bits[255] == 8);
+    assert(active_bits[16384] == 1);
+    assert(active_bits[8448] == 2);
+    assert(active_bits[1540] == 3);
+    assert(active_bits[2089] == 4);
+    assert(active_bits[50433] == 5);
+    assert(active_bits[24920] == 6);
+    assert(active_bits[5415] == 7);
+    assert(active_bits[26396] == 8);
 
     // testing subindices
 
     // testing that every computed index is correct
-    uint64_t number;
-    uint16_t *no_ptr = (uint16_t*)(&number);
-    uint32_t index = 0;
-    uint32_t computed_index;
-
     for (int b1 = 6; b1 < 52; b1++) {
         for (int b2 = 5; b2 < b1; b2++) {
             for (int b3 = 4; b3 < b2; b3++) {
