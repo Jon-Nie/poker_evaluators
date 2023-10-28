@@ -13,4 +13,6 @@ int main()
 
     printf("All cards: ");
     print_cards(deck);
+
+    printf("All tests successful.\n");
 }
