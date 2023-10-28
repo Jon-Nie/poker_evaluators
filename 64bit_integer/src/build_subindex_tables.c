@@ -3,8 +3,8 @@
 
 int main()
 {
-    int success = 0;
-    FILE* file;
+    int8_t success = 0;
+    FILE *file;
 
     uint64_t **index_tables = build_subindex_tables();
     uint64_t *index16 = index_tables[0];
