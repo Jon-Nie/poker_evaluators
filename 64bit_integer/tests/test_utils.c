@@ -70,13 +70,13 @@ int main()
     assert((index_tables[3][15+ARRSIZE_16*3] + index_tables[2][57344]-1) == bincoeff(52, 7)); //maximum index of c(52, 7)
 
     //testing that every computed index is correct
-    for (int b1 = 6; b1 < 52; b1++) {
-        for (int b2 = 5; b2 < b1; b2++) {
-            for (int b3 = 4; b3 < b2; b3++) {
-                for (int b4 = 3; b4 < b3; b4++) {
-                    for (int b5 = 2; b5 < b4; b5++) {
-                        for (int b6 = 1; b6 < b5; b6++) {
-                            for (int b7 = 0; b7 < b6; b7++) {
+    for (size_t b1 = 6; b1 < 52; b1++) {
+        for (size_t b2 = 5; b2 < b1; b2++) {
+            for (size_t b3 = 4; b3 < b2; b3++) {
+                for (size_t b4 = 3; b4 < b3; b4++) {
+                    for (size_t b5 = 2; b5 < b4; b5++) {
+                        for (size_t b6 = 1; b6 < b5; b6++) {
+                            for (size_t b7 = 0; b7 < b6; b7++) {
                                 number = ((uint64_t)1 << b1) | ((uint64_t)1 << b2) | ((uint64_t)1 << b3) | ((uint64_t)1 << b4) | ((uint64_t)1 << b5) | ((uint64_t)1 << b6) | ((uint64_t)1 << b7);
                                 index += 1;
                                 computed_index = get_index(no_ptr, index_tables, active_bits);

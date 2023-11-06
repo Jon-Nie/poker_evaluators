@@ -24,7 +24,7 @@ uint64_t *init_deck()
 {
     uint64_t *deck = malloc(sizeof(uint64_t) * DECK_SIZE);
 
-    for (int i = 0; i < DECK_SIZE; i++) {
+    for (size_t i = 0; i < DECK_SIZE; i++) {
         deck[i] = ((uint64_t)1 << i);
     }
 
@@ -33,7 +33,7 @@ uint64_t *init_deck()
 
 void print_cards(uint64_t cards)
 {
-    for (int i = 0; i < DECK_SIZE; i++) {
+    for (size_t i = 0; i < DECK_SIZE; i++) {
         if (cards & 1) {
             printf("%s ", deck_char[i]);
         }

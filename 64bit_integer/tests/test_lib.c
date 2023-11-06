@@ -6,7 +6,7 @@ int main()
 {
     uint64_t* deck_list = init_deck();
     uint64_t deck;
-    for (int i = 0; i < 52; i++) {
+    for (size_t i = 0; i < 52; i++) {
         print_cards(deck_list[i]);
         deck = deck | deck_list[i];
     }

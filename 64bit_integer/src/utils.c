@@ -11,10 +11,10 @@ uint8_t *build_active_bits_table()
     uint16_t number;
     uint8_t *active_bits = malloc(sizeof(uint8_t) * ARRSIZE_16);
 
-    for (uint32_t index = 0; index < ARRSIZE_16; index++) {
+    for (size_t index = 0; index < ARRSIZE_16; index++) {
         number = index;
         no_bits = 0;
-        for (int bit = 0; bit < 16; bit++) {
+        for (size_t bit = 0; bit < 16; bit++) {
             if ((number & (1<<bit))) {
                 no_bits += 1;
             }
@@ -31,7 +31,7 @@ uint64_t bincoeff(int16_t n, int16_t k)
     if ((n < 0) || (k < 0)) return 0;
 
     uint64_t combis = 1;
-    int stop;
+    uint64_t stop;
 
     if (k > (n - k)) {
         stop = k;
@@ -57,7 +57,7 @@ static uint64_t compute_subindex(uint16_t number, uint8_t bits_set, uint8_t addi
 {
     uint64_t index = 1;
 
-    for (int pos = 15; pos >= 0; pos--) {
+    for (size_t pos = 15; pos >= 0; pos--) {
         if ((number & (1 << pos)) && (bits_set != 0)) {
             index += bincoeff(pos+offset, bits_set+additional_bits);
             bits_set--;
@@ -84,7 +84,7 @@ uint64_t **build_subindex_tables()
     uint8_t bits_set, bits_left;
     uint64_t index16, index32, index48, index64;
 
-    for (uint32_t number = 0; number < ARRSIZE_16; number++) {
+    for (size_t number = 0; number < ARRSIZE_16; number++) {
         bits_set = active_bits[number];
 
         if (bits_set > 7) {
@@ -95,7 +95,7 @@ uint64_t **build_subindex_tables()
         index16 = compute_subindex(number, bits_set, 0, 0);
         lookup16[number] = index16;
 
-        for (int additional_bits = 0; additional_bits <= bits_left; additional_bits++) {
+        for (size_t additional_bits = 0; additional_bits <= bits_left; additional_bits++) {
             index32 = compute_subindex(number, bits_set, additional_bits, 16);
             lookup32[ARRSIZE_16*additional_bits + number] = index32;
 
