@@ -3,7 +3,7 @@
 
 int main()
 {
-    int8_t success = 0;
+    size_t success = 0;
     FILE *file;
 
     uint64_t **index_tables = build_subindex_tables();
@@ -43,4 +43,6 @@ int main()
         printf("Error: couldn't write to index64 file.");
         return 1;
     }
+
+    printf("All subindex tables successfully built.\n");
 }

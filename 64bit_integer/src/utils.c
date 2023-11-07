@@ -57,7 +57,7 @@ static uint64_t compute_subindex(uint16_t number, uint8_t bits_set, uint8_t addi
 {
     uint64_t index = 1;
 
-    for (size_t pos = 15; pos >= 0; pos--) {
+    for (int8_t pos = 15; pos >= 0; pos--) {
         if ((number & (1 << pos)) && (bits_set != 0)) {
             index += bincoeff(pos+offset, bits_set+additional_bits);
             bits_set--;
